@@ -26,11 +26,10 @@ message CategoryRequest {
 }
 
 message CategoryListRequest {
-    string number = 1;
 }
 
 service CategoryService {
-    rpc CreateCategory(CreateCategoryRequest) returns (CategoryResponse) {}
-    rpc GetCategory(CategoryRequest) returns (CategoryResponse) {}
+    rpc CreateCategory(CreateCategoryRequest) returns (Category) {}
+    rpc GetCategory(CategoryRequest) returns (Category) {}
     rpc ListCategories(CategoryListRequest) returns (CategoryListResponse) {}
 }

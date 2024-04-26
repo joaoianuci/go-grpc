@@ -60,6 +60,16 @@ func (c *Category) FindByCourseID(courseID string) (Category, error) {
 	return category, nil
 }
 
+func (c *Category) FindByID(id string) (Category, error) {
+	var category Category
+	err := c.db.QueryRow("SELECT id, name, description FROM categories WHERE id = $1", id).Scan(&category.ID, &category.Name, &category.Description)
+	if err != nil {
+		return Category{}, err
+	}
+
+	return category, nil
+}
+
 func (c *Category) Update(id string, name string, description string) (Category, error) {
 	_, err := c.db.Exec("UPDATE categories SET name = $1, description = $2 WHERE id = $3", name, description, id)
 	if err != nil {
